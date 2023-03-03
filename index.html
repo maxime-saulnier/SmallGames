@@ -1,0 +1,81 @@
+<!DOCTYPE html >
+<html>
+<head>
+<title id="titre"></title>
+<link rel="stylesheet" href="navbar/demo.css">
+<script src="lib/p5.min.js"></script>
+<script src="lib/p5.play.js"></script>
+<script>
+	function GetId(id){
+	if(document.getElementById) return document.getElementById(id);
+	else return document.all[id];
+	}
+	function draw()
+	{
+		var iframe = document.getElementById('affichage');
+		
+		if(!!iframe.contentDocument.getElementById('titre'))
+		{
+			var innerDoc = iframe.contentDocument.getElementById('titre').innerHTML || iframe.contentWindow.document.getElementById('titre').innerHTML;
+			
+			document.getElementById('titre').innerHTML=innerDoc;
+		}
+		else
+		{
+			iframe.contentDocument.name;
+		}
+		
+	}
+</script>
+</head>
+<body leftmargin=0 marginwidth=0 topmargin=0 marginheight=0>
+<div class="meny">
+	<h2><a href="accueil/accueil.html" target="affichage" onClick="GetId('affichage').src='accueil/accueil.html'; return false;">Home</h2>
+	<h2><li><a href="accueil/accueil.html" target="affichage" onClick="GetId('affichage').src='accueil/accueil.html'; return false;">JEUX</li></h2>
+	<ul>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='BALL';GetId('affichage').src='BALL/BALL.html'; return false;">BALL</a></li>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='CUBE.IO';GetId('affichage').src='CUBE_IO/cube_io.html'; return false;">CUBE.IO</a></li>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='ECHEC';GetId('affichage').src='ECHEC/ECHEC.html'; return false;">ECHEC</a></li>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='PAC-MAN';GetId('affichage').src='PAC-MAN/PAC-MAN.html'; return false;">PAC-MAN</a></li>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='RUN';GetId('affichage').src='RUN/RUN.html'; return false;">RUN</a></li>
+		<li><a target="affichage" onClick="document.getElementById('titre').innerHTML='SNAKE';GetId('affichage').src='SNAKE/SNAKE.html'; return false;">SNAKE</a></li>
+	</ul>
+	<h2><li><a href="accueil/accueil.html" target="affichage" onClick="GetId('affichage').src='accueil/accueil.html'; return false;">Util</li></h2>
+	<ul>
+		<li><a target="affichage" onClick="GetId('affichage').src='nombre premier/calculateur.html'; return false;">nombre premier</a></li>
+		<li><a target="affichage" onClick="GetId('affichage').src='horloge/horloge.html'; return false;">HORLOGE</a></li>
+		<li><a target="affichage" onClick="GetId('affichage').src='minuteur/minuteur.html'; return false;">MINUTEUR</a></li>
+	</ul>
+</div>
+<div class="meny-arrow"></div>
+
+<div class="contents">
+	<iframe src="accueil/accueil.html" frameborder='no' framespacing=0 border=0 width=100% class="contents" id="affichage"></iframe>
+</div>
+<script src="navbar/meny.js"></script>
+<script>
+	var meny = Meny.create({
+	menuElement: document.querySelector( '.meny' ),
+	contentsElement: document.querySelector( '.contents' ),
+// [optional] alignement du menu (top/right/bottom/left)
+	position: Meny.getQuery().p || 'left',
+// [optional] hauteur du menu (pour la position top ou bottom)
+	height: 200,
+// [optional] largeur du menu (pour la position left ou right)
+	width: 260,
+// [optional] distance de d�clenchement du menu par rapport au menu
+	threshold: 40,
+// [optional] utilisation des mouvement de la souris pour l'ouverture ou la fermeture
+	mouse: true,
+// [optional] utilisation de l'approche
+	touch: true
+	});
+
+	if( Meny.getQuery().u && Meny.getQuery().u.match( /^http/gi ) ) {
+		var contents = document.querySelector( '.contents' );
+		contents.style.padding = '0px';
+		contents.innerHTML = '<div class="cover"></div><iframe src="'+ Meny.getQuery().u +'" style="width: 100%; height: 100%; border: 0; position: absolute;"></iframe>';
+	}
+</script>
+</body>
+</html>
