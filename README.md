@@ -1,2 +1,2 @@
 # SmallGames
-SmallGames
+Small Games and and tests
