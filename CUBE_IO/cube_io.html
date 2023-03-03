@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title id="titre">cube.io</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../lib/p5.min.js"></script>
+    <script src="../lib/p5.play.js"></script>
+	<script  src="cube_io.js" ></script>
+<style type="text/css">
+body {
+    overflow:hidden;
+}.classementstyle{
+ color: #ffffff;
+ background-color: #cccccc;
+ opacity: 0.8;
+ font-size: 200%;
+ width: 20%;
+ height: 39%;
+ position: absolute;
+ z-index:1;
+ right:1%;
+ top:1%;
+ border-radius: 30px;
+ align:center;
+}.scorediv{
+ color: #FF0000;
+ background-color: #cccccc;
+ opacity: 0.8;
+ width: 10%;
+ height: 8%;
+ font-size: 200%;
+ position: absolute;
+ z-index:1;
+ left:1%;
+ bottom:1%;
+ border-radius: 30px;
+ align:left;
+}.classnom{
+ color: #ffffff;
+ background-color: #cccccc;
+ opacity: 0.8;
+ font-size: 1px;
+ width: 25%;
+ height: 25%;
+ position: absolute;
+ z-index:1;
+ left: 37.5%;
+ top:37.5%;
+ border-radius: 30px;
+ align:center;
+}.Jeux{
+ background-color: transparent;
+ opacity: 1;
+ font-size: 1px;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ z-index:1;
+ left: 0;
+ top:0;
+ align:center;
+}.spectateurdiv{
+ color: #FF0000;
+ background-color: #cccccc;
+ opacity: 0.8;
+ width: 10%;
+ height: 8%;
+ font-size: 1px;
+ position: absolute;
+ z-index:1;
+ right:1%;
+ bottom:1%;
+ border-radius: 30px;
+ align:left;
+}.button1{
+ color: #FF0000;
+ background-color: transparent;
+ font-size:29px;
+ width: 49%;
+ height: 100%;
+ border-radius: 30px;
+ border: 0px;
+ align:center;
+}.numberdiv{
+ color: #FF0000;
+ background-color: #cccccc;
+ opacity: 0.8;
+ width: 10%;
+ height: 8%;
+ position: absolute;
+ z-index:1;
+ right:45%;
+ bottom:1%;
+ border-radius: 30px;
+ align:left;
+}
+</style>
+</head>
+ <body  leftmargin=0 marginwidth=0 topmargin=0 marginheight=0>
+ <div style="color: #ffffff;width: 100%;height: 100%;position: absolute;left: 0px;top:0px;align:center;overflow:hidden;" ></div>
+ <div id=jeu class="Jeux" ></div>
+ <div id=classement class="classementstyle"></div>
+ <div id=numberm class="numberdiv"> 
+	<input align=center valign=middle type="number" style=" border-radius: 30px;" id="mechnum" name="mechnu" min="1" max="100" value="1"></div>
+ <div id=spectateur class="spectateurdiv">
+	<div style="color: #000000;background-color: #000000;width: 2%;height: 100%;position: absolute;left: 49%;top:0%;"></div>
+	<input align=center valign=middle type="button"  class="button1" id="bouton1" value="#1"  onClick="if(temps==false && sptype=='1,2,..'){sptype='#1'; document.getElementById('numberm').style.visibility='hidden';}"><input align=center valign=middle type="button" id="bouton2"  class="button1" value="1,2,.."  onClick="if(temps==false && sptype=='#1') {sptype='1,2,..'; document.getElementById('mechnum').value=1; document.getElementById('numberm').style.visibility='visible';}">
+ </div>
+ <div id=comme class="classnom" >
+	<div style="color: #ffffff;width: 100%;height: 25%;position: absolute;left: 0px;top:5%;" align=center>
+		<input type="color" style="font-size:33px;width: 18%;height: 100%;border: 0px;background-color: transparent;" id="color" name="color">
+	</div>
+
+	<div style="color: #ffffff;background-color: transparent;width: 100%;height: 25%;position: absolute;left: 0%;bottom:37.5%;" align=center>
+		<input align=center type="text" style="font-size:33px; border-radius: 30px;" id="pseudo" name="pseudo"  placeholder="surnom">
+		<input align=center type="button" style="font-size:33px; border-radius: 30px;" value="Jouer" id="jouer"  onClick="
+		if(jouer==false){
+		jouer=true;
+		mt=250;
+		alea(mt);
+		while(aleatoire.overlap(mechans)) alea(mt);
+		spr.position.x=aleatoire.position.x;
+		spr.position.y=aleatoire.position.y;
+		document.getElementById('comme').style.visibility='hidden';
+		document.getElementById('scored').style.visibility='visible';
+		spectateur=false;
+		col=document.getElementById('color').value;
+		spr.shapeColor = color(col);
+		murh.shapeColor = color(0,0,0,0);
+		murb.shapeColor = color(0,0,0,0);
+		murd.shapeColor = color(0,0,0,0);
+		murg.shapeColor = color(0,0,0,0);}">
+	</div>
+
+	<div style="color: #ffffff;background-color: transparent;opacity: 1;width: 100%;height: 25%;position: absolute;left: 0%;bottom:0%;" align=center valign=top>
+		<input align=center type="button" valign=top style="font-size:20px; border-radius: 30px;" value="spectateur" id="spec"  onClick="
+		if(temps==true){
+		temps=false;
+		spectateur=true;
+		sptype='#1';
+		document.getElementById('spectateur').style.visibility='visible';
+		document.getElementById('comme').style.visibility='hidden';
+		document.getElementById('scored').style.visibility='visible';}">
+	</div>
+ </div>
+ <div id=scored class="scorediv" >
+   <table style="width:100%;height:100%;">
+  <tr>
+    <td align=center id="score"valign=middle>20</td>
+  </tr>
+</table>
+ </div>
+ </body>
+</html>
+			

@@ -1,0 +1,71 @@
+<!
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title id="titre" align=center>timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../lib/p5.min.js"></script>
+    <script src="../lib/p5.play.js"></script>
+	<script  style="width: 100%;height: 100%;position: absolute;left: 0px;top:0px;align:center;overflow:hidden;" src="minuteur.js" ></script>
+<style type="text/css">
+body {
+    overflow:hidden;
+	zoom:50%;
+}
+</style>
+</head>
+<body  leftmargin=0 marginwidth=0 topmargin=0 marginheight=0>
+	<div id="Start" style="color: #ffffff;background-color: transparent;width: 100%;height: 8%;position: absolute;left: 0%;bottom:0%;" align=center>
+		<input align=center type="button" style="width: 100%;height: 100%;font-size:39px;" value="Start" id="1" onClick="
+		if(fait=='Start'){
+			if(s>0 || m>0 || h>0){fait='stop';
+				h=hselect;
+				m=mselect;
+				s=sselect;
+				ss=setInterval(temps,1000);
+				document.getElementById('stop').style.visibility='visible';
+				document.getElementById('Start').style.visibility='hidden';}}">
+	</div>
+	<div id="stop" style="visibility: hidden;color: #ffffff;background-color: transparent;width: 100%;height: 8%;position: absolute;left: 0%;bottom:0%;" align=center>
+		<input align=center type="button" style="width: 100%;height: 100%;font-size:39px;" value="stop" id="2" onClick="
+		if(fait=='stop'){
+			if(s>0 && m>0 && s>0){fait='Start';
+
+				clearInterval(ss);
+				document.getElementById('stop').style.visibility='hidden';
+				document.getElementById('Start').style.visibility='visible';}}">
+	</div>
+	<div style="color: #ffffff;background-color: transparent;width: 100%;height: 8%;position: absolute;left: 0%;top:0%;" align=center>
+		<div style="color: #cccccc;background-color: transparent;width: 32%;height: 100%;position: absolute;left: 1%;top:0%;font-size:45px;" align=center valign=middle> 
+		heures: <input id="heure" align=center valign=middle type="number" style="-moz-appearance:textfield;border-radius: 30px;width: 50%;height: 100%;font-size:45px;" id="mechnum" name="mechnu" min="0" value="0"></div>
+		<div style="color: #cccccc;background-color: transparent;width: 32%;height: 100%;position: absolute;right: 34%;top:0%;font-size:45px;" align=center valign=middle> 
+		minutes: <input id="minute" align=center valign=middle type="number" style="-moz-appearance:textfield;border-radius: 30px;width: 50%;height: 100%;font-size:45px;" id="mechnum" name="mechnu" min="0" max="60" value="5"></div>
+		<div style="color: #cccccc;background-color: transparent;width: 32%;height: 100%;position: absolute;right: 1%;top:0%;font-size:45px;" align=center valign=middle> 
+		secondes: <input id="seconde" align=center valign=middle type="number" style="-moz-appearance:textfield;border-radius: 30px;width: 50%;height: 100%;font-size:45px;" id="mechnum" name="mechnu" min="0" max="60" value="0"></div>
+	</div>
+	<div style="color: #ffffff;background-color: transparent;width: 100%;height: 8%;position: absolute;left: 0%;top:8%;" align=center>
+		<table align=center style="width:100%">
+			<tr>
+				<td align=center style="font-weight:bold;width: 1%;"></td>
+				<td align=center style="font-weight:bold;width: 32%;">
+					<img align=center src="image/PLUS.png" border="0" onClick="document.getElementById('heure').value=Number(document.getElementById('heure').value)+1;">&nbsp;
+					<img align=center src="image/MOINS.png" border="0" onClick="document.getElementById('heure').value=Number(document.getElementById('heure').value)-1;">
+				</td>
+				<td align=center style="font-weight:bold;width: 1%;"></td>
+				<td align=center style="font-weight:bold;width: 32%;">
+					<img align=center src="image/PLUS.png" border="0" onClick="document.getElementById('minute').value=Number(document.getElementById('minute').value)+1;">&nbsp;
+					<img align=center src="image/MOINS.png" border="0" onClick="document.getElementById('minute').value=Number(document.getElementById('minute').value)-1;">
+				</td>
+				<td align=center style="font-weight:bold;width: 1%;"></td>
+				<td align=center style="font-weight:bold;width: 32%;">
+					<img align=center src="image/PLUS.png" border="0" onClick="document.getElementById('seconde').value=Number(document.getElementById('seconde').value)+1;">&nbsp;
+					<img align=center src="image/MOINS.png" border="0" onClick="document.getElementById('seconde').value=Number(document.getElementById('seconde').value)-1;">
+				</td>
+				<td align=center style="font-weight:bold;width: 1%;"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+			
